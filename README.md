@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/ssghost/My_Attention_Seqnet.svg?style=svg)]
+[![CircleCI](https://circleci.com/gh/ssghost/My_Attention_Seqnet.svg?style=svg)](https://circleci.com/gh/ssghost/My_Attention_Seqnet)
 # My_Attention_Seqnet
 An Automatic Compiled Attention Seq2Seq Neural Machine Translation Algorithm Model.
     
