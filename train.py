@@ -3,7 +3,7 @@ from seqnet import *
 
 def main():
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'c:m::', ['corpora=','maxlen='])
+        opts, args = getopt.getopt(sys.argv[1:], 'c:m:', ['corpora=','maxlen='])
     except getopt.GetoptError as err:
         print(err) 
         sys.exit()
@@ -14,7 +14,7 @@ def main():
     for o, a in opts:
         if o in ('-c', '--corpora') and type(a)==str:
             corpora = a
-        elif o in ('-m', '--maxlen') and type(a)==int,int:
+        elif o in ('-m', '--maxlen') and type(a)==list[int]:
             maxlen = list(a)
         else:
             assert False, 'unhandled option'
