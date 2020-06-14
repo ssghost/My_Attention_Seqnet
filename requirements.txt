@@ -1,4 +1,4 @@
-tf-nightly-gpu==2.2.0.dev20200314
+tf-nightly-gpu>=2.2.0.dev20200314
 Keras>=2.2.4
 numpy>=1.16.4
 h5py>=2.8.0 
