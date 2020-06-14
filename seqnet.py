@@ -14,7 +14,7 @@ import keras.backend as K
 os.environ['KERAS_BACKEND'] = 'tensorflow'
 
 
-class seqnet:
+class Seqnet:
     def __init__(self):
         self.in_tokens = None
         self.out_tokens = None
@@ -27,6 +27,7 @@ class seqnet:
         self.dec = None
         self.indict = None
         self.outdict = None
+        self.callback = None
 
     def read(self,corpora,maxlen):
         if os.path.isfile(corpora):
@@ -122,7 +123,7 @@ class seqnet:
     def train(self):
         self.dec = [tf.zeros((self.scnt, self.outchars*4)), tf.zeros((self.scnt, self.outchars*4))]
         outputs = self.out_tokens.swapaxes(0,1)
-        self.model.fit([self.in_tokens,self.dec], outputs, epoch=100, batch_size=64)
+        self.model.fit([self.in_tokens,self.dec], outputs, epoch=100, batch_size=64, callbacks = [self.callback])
 
     def test(self, tpath, opath):
         if os.path.isfile(tpath):
@@ -150,6 +151,12 @@ class seqnet:
             print('File Not Found.')
             sys.exit() 
         
+    def callback(self):
+        class acc_clip(tf.keras.callbacks.Callback):
+            def on_epoch_end(self, epoch, logs={}):
+                if (logs.get('acc') > 0.99):
+                    self.model.stop_training = True
+        self.callback = acc_clip()
         
 
 
