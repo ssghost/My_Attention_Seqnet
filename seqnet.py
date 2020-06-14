@@ -100,6 +100,8 @@ class Seqnet:
             X = self.one_step_attention(X, dec[0])
             dec, X = self.decoder(dec, X)
             outputs.append(X)
+            
+        outputs = keras.layers.Activation('softmax', name='attention_vec')(outputs)
         
         model = Model(inputs=[X,dec], outputs=np.array(outputs), name='SeqNet')
 
