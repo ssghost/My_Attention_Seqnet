@@ -1,5 +1,5 @@
 import getopt, sys
-from seqnet import *
+from seqnet import Seqnet
 
 def main():
     try:
@@ -19,14 +19,16 @@ def main():
         else:
             assert False, 'unhandled option'
 
+    seq = Seqnet()
     if corpora != '':    
-        seqnet().read(corpora = corpora, maxlen = maxlen)
+        seq.read(corpora = corpora, maxlen = maxlen)
     else:
         print('Corpora Is Needed.')
         sys.exit()
     
-    seqnet().compile_model()
-    seqnet().train()
+    seq.compile_model()
+    seq.callback()
+    seq.train()
     
 if __name__ == "__main__":
     main()
